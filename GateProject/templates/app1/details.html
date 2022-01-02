@@ -1,0 +1,34 @@
+{% extends "app1/base.html" %}
+{% block title %}
+    <title>Show Applicants </title>
+{% endblock %}
+{% block content %}
+    <h1 style="text-align:center;color:orange">Applicant Details</h1>
+    <table class="table table-striped table-dark" style="width:90%;margin:auto">
+        <tr >
+            <th>Applicant name</th>
+            <th>Mobile Number</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Aadhar no.</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for a in applicant_list %}
+            <tr >
+                <td>{{a.Applicant_name}}</td>
+                <td>{{a.Mobile_No}}</td>
+                <td>{{a.Gender}}</td>
+                <td>{{a.Address}}</td>
+                <td>{{a.Aadhar_No}}</td>
+
+                <td><a href="{% url 'applicant_details' a.id %}"><button class="btn btn-info">Details</button></a></td>
+                <td><a href="{% url 'update' a.id %}"><button class="btn btn-warning">Update</button></a></td>
+                <td><a href="{% url 'delete' a.id %}"><button class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'add_applicant' %}"><button class="btn btn-success" style="margin-left:4.5%">Add Applicant</button></a>
+{% endblock %}
